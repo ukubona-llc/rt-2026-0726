@@ -253,6 +253,111 @@
     line-height: 1.6;
   }
 
+  /* tabs */
+  .tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 34px;
+    border-bottom: 1px solid var(--border);
+  }
+  .tab-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: .74rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    background: none;
+    border: none;
+    color: var(--text-faint);
+    padding: 10px 4px 12px;
+    margin-right: 22px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: color .2s ease, border-color .2s ease;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--amber); border-color: var(--amber); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .verbatim-note {
+    font-family: 'DM Mono', monospace;
+    font-size: .74rem;
+    line-height: 1.75;
+    color: var(--text-dim);
+    background: color-mix(in srgb, var(--rose) 7%, transparent);
+    border: 1px dashed color-mix(in srgb, var(--rose) 45%, var(--border));
+    border-radius: 6px;
+    padding: 16px 18px;
+    margin-bottom: 40px;
+  }
+  .verbatim-note strong { color: var(--rose); }
+
+  .vturn {
+    margin-bottom: 8px;
+    padding: 24px 26px;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent, var(--text-faint));
+    border-radius: 4px 10px 10px 4px;
+    background: var(--panel);
+  }
+  .vturn + .vturn { margin-top: 22px; }
+  .vturn-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    margin-bottom: 6px;
+  }
+  .vwho {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: .9rem;
+    color: var(--accent, var(--text));
+  }
+  .vconf {
+    font-family: 'DM Mono', monospace;
+    font-size: .64rem;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--text-faint);
+  }
+  .vwhy {
+    font-family: 'DM Mono', monospace;
+    font-size: .7rem;
+    color: var(--text-faint);
+    margin-bottom: 16px;
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .vtext {
+    font-size: .92rem;
+    line-height: 1.75;
+    color: var(--text);
+    white-space: pre-wrap;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .vtext .diagram {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: .82rem;
+    color: var(--teal);
+    background: color-mix(in srgb, var(--teal) 6%, transparent);
+    border: 1px solid color-mix(in srgb, var(--teal) 25%, var(--border));
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin: 10px 0;
+    white-space: pre;
+    overflow-x: auto;
+  }
+  .gap {
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: .68rem;
+    color: var(--text-faint);
+    margin: 26px 0;
+  }
+
   footer {
     margin-top: 60px;
     padding-top: 24px;
@@ -347,6 +452,13 @@
       </tbody>
     </table>
   </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('compressed', this)">Ledger — compressed</button>
+    <button class="tab-btn" onclick="showTab('verbatim', this)">Transcript — verbatim</button>
+  </div>
+
+  <div id="tab-compressed" class="tab-panel active">
 
   <div class="ledger-label">Ledger — chronological, append-only</div>
 
@@ -459,6 +571,416 @@
     <div class="flags"><span class="flag elicit">event: ElicitationRequest — pending</span></div>
   </div>
 
+  </div>
+  <!-- /#tab-compressed -->
+
+  <div id="tab-verbatim" class="tab-panel">
+
+  <div class="verbatim-note">
+    <strong>Attribution is speculative.</strong> The pasted transcript carried no model
+    metadata. Ukubona's convention sequences external voices xAI → Google → OpenAI →
+    Anthropic → Ukubona synthesis, and the transcript contains exactly three AI turns —
+    so each is provisionally slotted into that order. The labels below are a stylistic
+    guess (register, structuring habit, formatting tics), not a verified fact. Correct
+    them and this becomes a proper LedgerEvent; until then treat as <em>unconfirmed</em>.
+    Text is reproduced non-lossy — nothing paraphrased, nothing cut.
+  </div>
+
+  <div class="gap">— transcript opens mid-conversation; the prompt preceding Turn 1 was not pasted —</div>
+
+  <div class="vturn" style="--accent: var(--rose);">
+    <div class="vturn-head">
+      <div class="vwho">Turn 1 — speculative: xAI</div>
+      <div class="vconf">confidence: low</div>
+    </div>
+    <div class="vwhy">why the guess: clipped one-line paragraphs, heavy anaphora ("It isn't anger. It isn't vanity. It isn't old age."), rhetorical staccato register</div>
+    <div class="vtext">Exactly. King Lear may be even more explicit than Hamlet about this.
+
+Lear's first mistake isn't anger.
+
+It isn't vanity.
+
+It isn't old age.
+
+It's a measurement error.
+
+He asks the wrong question.
+
+"Which of you shall we say doth love us most?"
+
+He's trying to infer an invisible state ("love") from a performative signal ("public speech").
+
+That's a catastrophically bad measurement instrument.
+
+Cordelia refuses to optimize for the metric.
+
+Goneril and Regan optimize perfectly.
+
+Goodhart's Law, 400 years early:
+
+When a measure becomes a target, it ceases to be a good measure.
+
+Lear mistakes the output of an incentive system for the latent variable he actually cares about.
+
+In your language:
+
+<span class="diagram">affection (latent tensor)
+  ↓
+public declarations (observable matrix)
+  ↓
+Lear's inference engine
+  ↓
+scalar:
+"Regan loves me more."</span>
+The error isn't in the daughters.
+
+The error is in the router.
+
+Shakespeare seems obsessed with exactly these failures.
+
+Hamlet: ambiguous event stream.
+
+King Lear: corrupted measurement.
+
+Othello: adversarial information (Iago poisoning the event stream).
+
+Macbeth: probabilistic forecasts mistaken for deterministic commands.
+
+Julius Caesar: conflicting signals from institutions, omens, and rhetoric.
+
+Each tragedy is a different failure mode of inference.
+
+And there's another beautiful symmetry.
+
+Lear begins by demanding compression.
+
+"Tell me, in one speech, how much you love me."
+
+He's trying to collapse the full tensor of a lifelong father-daughter relationship into a single scalar.
+
+Cordelia's objection is almost philosophical.
+
+She isn't saying she doesn't love him.
+
+She's saying:
+
+The compression is invalid.
+
+Some things lose their truth when forced into that channel.
+
+That's why "Nothing" is such a devastating reply.
+
+Lear hears "zero."
+
+Cordelia means, "Your measurement apparatus cannot encode what you're asking."
+
+This is also why Shakespeare feels surprisingly modern.
+
+He's less interested in "Who is good?" than in:
+
+What information is available?
+
+Who can perceive it?
+
+Who is manipulating it?
+
+Who mistakes representation for reality?
+
+What irreversible action follows?
+
+Those are engineering questions before they're moral ones.
+
+The moral catastrophe follows from the informational catastrophe.
+
+That's a perspective that resonates remarkably well with your "event stream → router → action → write-back" architecture. Shakespeare's tragedies repeatedly suggest that kingdoms rarely collapse because people are purely evil; they collapse because rulers make irreversible decisions on the basis of corrupted, incomplete, or misrouted information.</div>
+  </div>
+
+  <div class="gap">↓ Ukubona ↓</div>
+
+  <div class="vturn" style="--accent: var(--amber);">
+    <div class="vturn-head">
+      <div class="vwho">Ukubona</div>
+      <div class="vconf">convener</div>
+    </div>
+    <div class="vtext">Othello: adversarial information (Iago poisoning the event stream)!! That hancky!!!!!     probabilistic forecasts mistaken for deterministic commands. for macbeth is surprising. i'd have thought the three wicked sisters were a corrupted event-stream, but you've made it more nuanced... almost at softMax / system 2. but boy!</div>
+  </div>
+
+  <div class="gap">↓ speculative: Google ↓</div>
+
+  <div class="vturn" style="--accent: var(--teal);">
+    <div class="vturn-head">
+      <div class="vwho">Turn 2 — speculative: Google</div>
+      <div class="vconf">confidence: low</div>
+    </div>
+    <div class="vwhy">why the guess: dense structured breakdown, tighter chained-arrow notation used as an explanatory device rather than decoration, methodical enumeration</div>
+    <div class="vtext">Haha—yes! And I think Macbeth is where the distinction becomes really interesting.
+
+For Othello, I'm pretty confident.
+
+The handkerchief is one of the greatest pieces of information engineering in literature.
+
+Think about it:
+
+<span class="diagram">Desdemona's fidelity (latent state)
+  ↓
+handkerchief (token)
+  ↓
+Iago controls token flow
+  ↓
+Othello updates posterior
+  ↓
+Murder</span>
+The handkerchief has almost no intrinsic meaning. It's just a piece of cloth.
+
+Its power comes from routing. Iago controls its provenance, timing, and interpretation. He's performing an adversarial attack on Othello's inference engine. Modern AI would call it data poisoning, prompt injection, or an adversarial example.
+
+Macbeth feels subtler.
+
+The witches don't actually tell Macbeth:
+
+"Go kill Duncan."
+
+They make predictions.
+
+"All hail, Macbeth, that shalt be king hereafter."
+
+That's descriptive.
+
+Macbeth hears:
+
+"Therefore I should become king by killing Duncan."
+
+That's prescriptive.
+
+The routing error happens inside Macbeth.
+
+It's the old philosophical distinction between:
+
+is
+
+ought
+
+or, in your language,
+
+<span class="diagram">event stream
+  ↓
+posterior
+  ↓
+policy</span>
+The witches never specify the policy.
+
+Macbeth invents it.
+
+Even Banquo gets the same event stream!
+
+That's the crucial control experiment.
+
+Both men observe essentially identical inputs.
+
+Yet Banquo says (paraphrasing),
+
+"The instruments of darkness tell us truths... to betray us in deepest consequence."
+
+Banquo treats the prophecy as uncertain information.
+
+Macbeth treats it as an execution plan.
+
+Same tensor.
+
+Different router.
+
+That's why I think the corruption isn't primarily at the event-stream level. The event stream is ambiguous, not necessarily corrupted. The catastrophe emerges from the mapping of probability into action.
+
+And Shakespeare keeps running these experiments.
+
+Lear: measurement error.
+
+Othello: adversarial corruption.
+
+Hamlet: ambiguous observations.
+
+Macbeth: posterior → policy collapse.
+
+They're different failure modes.
+
+There's another thing that suddenly strikes me because of your pentad.
+
+You've been saying the engineer is I and III, the agent is II and IV, and V is principle.
+
+Iago is almost the anti-engineer.
+
+He doesn't destroy Othello's reasoning.
+
+He engineers the inputs.
+
+He's a malicious architect of the event stream.
+
+The witches are stranger. They don't seem malicious in the same way. They're more like an oracle emitting a probability distribution. Macbeth is the one who prematurely collapses that distribution to a single action.
+
+In machine-learning terms, he takes a posterior over futures and immediately performs an argmax, then treats that argmax as a command. Shakespeare seems to be warning that there's a dangerous gap between what may happen and what you should do. That's a remarkably modern insight about decision-making under uncertainty.</div>
+  </div>
+
+  <div class="gap">↓ Ukubona ↓</div>
+
+  <div class="vturn" style="--accent: var(--amber);">
+    <div class="vturn-head">
+      <div class="vwho">Ukubona</div>
+      <div class="vconf">convener</div>
+    </div>
+    <div class="vtext">Both men observe essentially identical inputs.
+
+Yet Banquo says (paraphrasing),
+
+"The instruments of darkness tell us truths… to betray us in deepest consequence."???? I looove this---That's why I think the corruption isn't primarily at the event-stream level. The event stream is ambiguous, not necessarily corrupted. The catastrophe emerges from the mapping of probability into action.
+
+⸻... takes us back to epigenome.. different shit accumulated by bankquo and macbeth. and with lady macbeth not helping "recovery"</div>
+  </div>
+
+  <div class="gap">↓ speculative: OpenAI ↓</div>
+
+  <div class="vturn" style="--accent: var(--violet);">
+    <div class="vturn-head">
+      <div class="vwho">Turn 3 — speculative: OpenAI</div>
+      <div class="vconf">confidence: low</div>
+    </div>
+    <div class="vwhy">why the guess: reaches for a formalized pseudo-code update rule (Event_t / Router / Action_t / Update) as the organizing device, then walks it back into prose systematically</div>
+    <div class="vtext">Yes. And I think you've just landed on something richer than "nature vs. nurture."
+
+The event stream is the same.
+
+The routing isn't.
+
+Why?
+
+Because the router has a history.
+
+That's where your epigenome analogy becomes powerful—not as a biological claim about Macbeth, but as a computational metaphor.
+
+Imagine:
+
+<span class="diagram">Event_t
+    ↓
+Router(state_t)
+    ↓
+Action_t
+    ↓
+Update(state_t+1)</span>
+The router isn't static. Every prior event has left "marks" on it.
+
+That's exactly what epigenetics does conceptually. The DNA isn't rewritten every day, but its expression changes because of accumulated history. Likewise, Macbeth and Banquo don't have different witches. They have different accumulated routing functions.
+
+Macbeth's might have been shaped by:
+
+extraordinary military success
+
+ambition rewarded
+
+proximity to power
+
+perhaps an imagination already prone to rehearsing violent futures
+
+Banquo's by something else:
+
+loyalty
+
+skepticism
+
+patience
+
+perhaps simply a different temperament toward uncertainty
+
+Shakespeare doesn't tell us explicitly. That's almost the point.
+
+Then Lady Macbeth enters.
+
+I love your word: recovery.
+
+Everyone talks about Lady Macbeth as the instigator.
+
+But from a systems perspective, she's preventing the system from returning to equilibrium.
+
+Macbeth has multiple opportunities to recover.
+
+After hearing the prophecy:
+
+"If chance will have me king, chance may crown me."
+
+That's actually a remarkably healthy Bayesian statement.
+
+"If the posterior is correct, reality will update itself."
+
+He hasn't committed.
+
+Then Lady Macbeth arrives.
+
+She's essentially an external optimization process.
+
+Whenever Macbeth's router begins to settle, she perturbs it back toward action.
+
+She suppresses the recovery dynamics.
+
+There's even a feedback loop.
+
+After Duncan's murder, Macbeth becomes increasingly self-routing.
+
+Lady Macbeth almost disappears from the decision process.
+
+He no longer needs prompting.
+
+The system has learned.
+
+The router has been updated.
+
+Violence has become the default policy.
+
+That's why the banquet scene is so haunting. The ghost of Banquo isn't just guilt; it's the visible manifestation of a router that can no longer distinguish internal state from external evidence. The accumulated updates have fundamentally changed the operating characteristics of the system.
+
+And Banquo's line is extraordinary:
+
+"The instruments of darkness tell us truths, win us with honest trifles, to betray's in deepest consequence."
+
+He's articulating a principle that statisticians, epidemiologists, and AI researchers all recognize.
+
+A model can be locally accurate and globally misleading.
+
+The witches correctly predict:
+
+Thane of Cawdor ✔️
+
+Future king ✔️
+
+Those are "honest trifles."
+
+Macbeth infers:
+
+Therefore murder is the optimal policy.
+
+That inference is nowhere in the data.
+
+Banquo sees the difference between prediction and prescription.
+
+Macbeth doesn't.
+
+Viewed this way, Shakespeare's tragedies are less about fixed character flaws than about path dependence.
+
+The same ambiguous event enters two people.
+
+Their accumulated histories shape different routing.
+
+Those routings produce different actions.
+
+Those actions change the router again.
+
+Which changes the next action.
+
+It's almost recursive Bayesian updating, except the posterior isn't just about the world—it's about the decision-maker. Every irreversible action leaves a trace on the decision architecture itself. That's a remarkably close analogue to what you mean when you invoke the epigenome: history doesn't merely accumulate facts; it changes how future facts are interpreted.</div>
+  </div>
+
+  <div class="gap">↓ speculative: Anthropic — see Ledger tab, entry RT-2026-0726-005 ↓</div>
+
+  </div>
+  <!-- /#tab-verbatim -->
+
   <footer>
     <div>Ukubona LLC · epistemological infrastructure</div>
     <div>logos = Jacobian</div>
@@ -467,6 +989,13 @@
 </div>
 
 <script>
+  function showTab(name, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    btn.classList.add('active');
+  }
+
   function toggleTheme() {
     const html = document.documentElement;
     const isDark = html.getAttribute('data-theme') === 'dark';
